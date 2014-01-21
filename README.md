@@ -1,7 +1,7 @@
 pastt
 =====
 
-PASTT: PHP Android String Translation Tool
+PASTT: PHP Android String Translation Tool - Multi-Project hack
 
 The string resources used by the Android system for localization uses a custom XML-based format. PASTT allows translators without technical knowledge to edit and add translations in the Android resource XML format using a PHP-based webapp.
 
