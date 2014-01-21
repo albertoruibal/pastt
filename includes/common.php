@@ -20,6 +20,7 @@
 	}
 	// Read which translations already exist
 	function getLanguages($appId) {
+	    $languages = array();
 		if ($basehandle = opendir(getBaseDir($appId))) {
 			while (false !== ($dirname = readdir($basehandle))) {
 	
