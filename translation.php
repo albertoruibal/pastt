@@ -80,7 +80,7 @@
 				$stringPos = strPos($line, '>', $namePos) + 1;
 				$name = substr($line, $namePos, strpos($line, '"', $namePos) - $namePos);
 				//$newValue = stripslashes($_POST[$name]);
-				$newValue = str_replace("\n","\\n",$_POST[$name]);
+				$newValue = str_replace("\r", "", str_replace("\n","\\n",$_POST[$name]));
 				if (trim($newValue) != '') {
 					$outfile .= substr($line, 0, $stringPos) . $newValue . substr($line, strrpos($line, '<')) . "\n";
 				}
