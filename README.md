@@ -14,7 +14,7 @@ Originally build for use with Transdroid, for which you can see the tool active 
 Installation
 ============
 
-To install: unzip the latest pastt-{version}.zip to your PHP5-enabled web server. Copy your Android string resource directories 'values', 'values-nl', 'values-de', etc. to the res folder. Make sure all the 'values-{langcode}' directories (but not 'values') are readable and writeable by the web server. The res folder itself needs to be made writeable as well to add new languages. The 'values/strings.xml' file is required since it is assumed that it contains the (usually English) base version on which other translations are based.
+To install: unzip the latest pastt-{version}.zip to your PHP5-enabled web server. Copy your Android string resource directories 'values', 'values-nl', 'values-de', etc. to the app name folder ('res/' by default, but you can have multiple folders). Make sure all the 'values-{langcode}' directories (but not 'values') are readable and writeable by the web server. The res folder itself needs to be made writeable as well to add new languages. The 'values/strings.xml' file is required since it is assumed that it contains the (usually English) base version on which other translations are based.
 
 Finally rename the 'includes/settings.example.php' file to 'includes/settings.php'. Optionally you can set an e-mail address there where you are notified on translation updates. I suggest setting $requireemail as simple initial spam protection.
 
@@ -24,6 +24,7 @@ Developed By
 ============
 
 Designed and developed by [Eric Kok](eric@2312.nl) of [2312 development](http://2312.nl). Contributions by various others (see commit log).
+Multi-app hack by Alberto Ruibal @albertoruibal
 
 License
 =======

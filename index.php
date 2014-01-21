@@ -16,11 +16,13 @@
 		$defaultLanguage = substr($defaultLanguage, 0, 2);
 	}
 
-	$pageTitle = $appname;
 	include('includes/header.php');
 
+	foreach ($apps as $appId=>$appName) {
+		$languages = getLanguages($appId);
+
 	echo '
-	<h1>' . $appname . '</h1>';
+	<h1>' . $appName . '</h1>';
 	
 	echo '
 	<table>
@@ -41,7 +43,7 @@
 		<tr' . ($isuneven? $classuneven: '') . '>
 			<td>' . $language . '</td>
 			<td>' . $iso639[$langgroup] . '</td>
-			<td><a href="translation.php?lang=' . $language . '">Edit translation</a></td>
+			<td><a href="translation.php?appId=' . $appId . '&lang=' . $language . '">Edit translation</a></td>
 		</tr>';
 		
 			$isuneven = !$isuneven;
@@ -65,11 +67,13 @@
 	echo '
 					</select>
 					<strong>-r</strong><input type="text" id="region" name="region" /> (optional region code)
+					<input type="hidden" id="appId" name="appId" value="'.$appId.'" />
 					<input type="submit" id="submit" name="submit" value="Add" />
 				</form>
 			</td>
 		</tr>
-	</table>';
+		</table>';
+	}
 
 	include('includes/footer.php');
 

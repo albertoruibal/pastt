@@ -8,6 +8,11 @@
 	define('DIRECT_ACCESSIBLE', TRUE);
 	include('includes/common.php');
 	
+	if (!isset($_GET['appId'])) {
+		die('No appId specified; this should be in the query string.');
+	}
+	$appId = addslashes(htmlspecialchars(strip_tags($_GET['appId'])));	
+	$basedir = getBaseDir($appId);
 	if (!isset($_GET['lang'])) {
 		die('No language specified; this should be in the query string.');
 	}
@@ -167,7 +172,7 @@
 		
 	}
 	
-	$pageTitle = 'Editing ' . $langname . ' translation - ' . $appname;
+	$pageTitle = 'Editing ' . $langname . ' translation - ' . $apps[$appId];
 	include('includes/header.php');
 
 	echo '
@@ -315,7 +320,7 @@
 	// Require the input of a name and email address?
 	$requireemailhtml = $requireemail? 'return(requireNameAndEmail());"': '';
 	echo '
-	<form id="translationform" name="translationform" method="post" action="translation.php?lang=' . $lang . '" onsubmit="javascript:unloadOk=true;' . $requireemailhtml . '">
+	<form id="translationform" name="translationform" method="post" action="translation.php?appId=' . $appId . '&lang=' . $lang . '" onsubmit="javascript:unloadOk=true;' . $requireemailhtml . '">
 	<table id="translationtable">
 		<tr>
 			<th id="key">Key</th>

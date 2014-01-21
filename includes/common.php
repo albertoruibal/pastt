@@ -14,29 +14,33 @@
 	// Load settings
 	include('settings.php');
 	
+	// Global functions
+	function getBaseDir($appId) {
+		return substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], '/')) . '/'. $appId;
+	}
+	// Read which translations already exist
+	function getLanguages($appId) {
+		if ($basehandle = opendir(getBaseDir($appId))) {
+			while (false !== ($dirname = readdir($basehandle))) {
+	
+				// If it is a 'values-' directory, assume it is a translation resource
+				if (substr($dirname, 0, 7) == 'values-') {
+					$languages[] = substr($dirname, 7);
+				}
+			}
+			closedir($basehandle);
+		} else {
+			die('Cannot read directory ' . $basedir . '. Is it read-protected?');
+		}
+		return $languages;
+	}		
 	// Some global vars
-	$basedir = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], '/')) . '/res';
 	$arraySeparator = '|';
 	
 	// Check settings
 	if ($sendmail == '' && $_SERVER['SERVER_NAME'] != 'localhost')
 		die('Please set \'$sendmail\' in \'includes/settings.php\' (which might first be created by copying \'includes/settings.example.php\' if you haven\'t done so yet) to the e-mail address where change notifications can be mailed. Optionally, you can set \'$frommail\' to provide a sender address.');
-		
-	// Read which translations already exist
-	if ($basehandle = opendir($basedir)) {
-		while (false !== ($dirname = readdir($basehandle))) {
-		
-			// If it is a 'values-' directory, assume it is a translation resource
-			if (substr($dirname, 0, 7) == 'values-') {
-				$languages[] = substr($dirname, 7);
-			}
-			
-		}
-		closedir($basehandle);
-	} else {
-		die('Cannot read directory ' . $basedir . '. Is it read-protected?');
-	}
-	
+
 	// Some languages that we know of, to show the name instead of the localization code
 	// Android locale codes are defined in the ISO-639 standard: http://en.wikipedia.org/wiki/ISO-639
 	$raw639 = file_get_contents('includes/iso-639.txt');

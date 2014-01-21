@@ -9,7 +9,8 @@
 	if (!defined('DIRECT_ACCESSIBLE')) { die('Do not access the include files directly, but go to <a href="../">the script root</a> instead.'); }
 
 	// Adjust these settings to your liking
-	$appname = 'PASTT: PHP Android String Translation Tool';
+	// You can add multiple apps using folder_name=>app_name, the default folder name is 'res'
+	$apps = array('res'=>'PASTT: PHP Android String Translation Tool');
 	$sendmail = '';
 	$frommail = '';
 	$askforemail = TRUE;
