@@ -15,5 +15,7 @@
 	$frommail = '';
 	$askforemail = TRUE;
 	$requireemail = FALSE;
-	
+
+	// Tab format in the output file
+	$TAB = "    ";
 ?>

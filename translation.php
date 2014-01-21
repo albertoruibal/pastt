@@ -82,7 +82,7 @@
 				//$newValue = stripslashes($_POST[$name]);
 				$newValue = str_replace("\r", "", str_replace("\n","\\n",$_POST[$name]));
 				if (trim($newValue) != '') {
-					$outfile .= substr($line, 0, $stringPos) . $newValue . substr($line, strrpos($line, '<')) . "\n";
+					$outfile .= $TAB . substr($line, 0, $stringPos) . $newValue . substr($line, strrpos($line, '<')) . "\n";
 				}
 				$multiline = "";
 				
@@ -111,7 +111,7 @@
 				}
 				$newValues = explode($arraySeparator, str_replace("\n","\\n",stripslashes($_POST[$name])));
 				$n = 0;
-				$outfile .= $line . "\n";
+				$outfile .= $TAB . $line . "\n";
 				$multiline = "";
 			// <item> lines
 			} else if (substr($line, 0, 6) == '<item>') {
@@ -119,7 +119,7 @@
 					$multiline = "";
 					continue;
 				}
-				$outfile .= substr($line, 0, 6) . $newValues[$n] . substr($line, strrpos($line, '<')) . "\n";
+				$outfile .= $TAB . $TAB . substr($line, 0, 6) . $newValues[$n] . substr($line, strrpos($line, '<')) . "\n";
 				$n++;
 				$multiline = "";
 			} else if (substr($line, 0, 15) == '</string-array>') {
@@ -127,7 +127,7 @@
 					$multiline = "";
 					continue;
 				}
-				$outfile .= $line . "\n";
+				$outfile .= $TAB . $line . "\n";
 			} else {
 				if ($multiline != "") {
 					$multiline .= $line;
